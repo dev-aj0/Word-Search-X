@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 85%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 100%;
+    --muted-foreground: 0 0% 0%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 0%;
+    --radius: 0.5rem;
+    --highlight: 0 0% 75%;
+    --found: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 100%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+    --highlight: 0 0% 35%;
+    --found: 0 0% 100%;
+  }
+
+  .candy {
+    --background: 341 91% 68%;
+    --foreground: 0 0% 100%;
+    --primary: 24 100% 83%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 341 91% 78%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 341 91% 88%;
+    --muted-foreground: 0 0% 100%;
+    --accent: 24 100% 83%;
+    --accent-foreground: 341 91% 68%;
+    --highlight: 340, 49%, 64%;
+    --found: 340, 44%, 40%;
+  }
+
+  .forest {
+    --background: 139 30% 75%;
+    --foreground: 139 30% 20%;
+    --primary: 139 30% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 97 30% 66%;
+    --secondary-foreground: 139 30% 20%;
+    --muted: 139 30% 85%;
+    --muted-foreground: 139 30% 20%;
+    --accent: 97 30% 76%;
+    --accent-foreground: 139 30% 25%;
+    --highlight: 139 30% 45%;
+    --found: 139 30% 25%;
+  }
+
+  .sunset {
+    --background: 45 100% 81%;
+    --foreground: 0 0% 0%;
+    --primary: 0 100% 71%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 91%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 45 100% 95%;
+    --muted-foreground: 0 0% 0%;
+    --accent: 0 100% 71%;
+    --accent-foreground: 0 0% 100%;
+    --highlight: 0 80% 65%;
+    --found: 0 100% 55%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased min-h-screen;
+  }
+}
+
+@layer components {
+  .game-letter {
+    @apply font-mono text-2xl font-bold uppercase tracking-wider;
+  }
+
+  .button-hover {
+    @apply transition-transform duration-200 hover:scale-105 active:scale-95;
+  }
+
+  .fade-in {
+    @apply animate-fade-in;
+  }
+
+  .selected-box {
+    @apply ring-2 ring-primary font-bold;
+  }
+
+  /* Grid puzzle specific styles */
+  .puzzle-grid button {
+    @apply transition-colors duration-200;
+  }
+
+  .puzzle-grid button.found-word {
+    @apply bg-[hsl(var(--found))] text-primary-foreground font-bold;
+  }
+
+  .puzzle-grid button.selected {
+    @apply bg-[hsl(var(--highlight))] text-primary-foreground;
+  }
+
+  .puzzle-grid button.default {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary hover:text-secondary-foreground;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.draw-animation {
+  stroke-dasharray: 100;
+  animation: draw-line 0.5s ease forwards;
+}
